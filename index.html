@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Crystal Game</title>
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		
+		<!-- Linking jQuery jQuery JavaScript Library v2.2.4-->
+		<script src="assets/javascript/game.js"></script>
+		<!-- My CSS -->
+		<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	</head>
+	<body>
+		<!-- Page Layout -->
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-center">
+					<h1>CrystalsCollector!</h1>
+					<div class="instructions col-md-8 col-md-offset-2">
+						<p>You will be given a random number at the start of the game.</p>
+						<p>There are four crystals below. By clicking on a crystal you will add a specific amount of points to your total score.</p>
+						<p>You win the game by matching your total score to the random number, you lose the game if your total score goes above the random number.</p>
+						<p>The value of each crystal is hidden from you until you click on it.</p>
+						<p>Each time when the game starts, the game will change the values of each crystal.</p>
+						<h4>Good Luck!</h4>
+					</div>
+				</div>
+			</div>
+			<br><br>
+			<div class="row">
+				<div class="results">
+					<div class="col-md-12">
+						<h2><span class="numberdisplay"></h2>
+						</div>
+						
+					</div>
+					<div class="col-md-6">
+						<div class="stats">
+							<p>Wins: <span id="winsdisplay">0</span></p>
+							<p>Losses: <span id="lossesdisplay">0</span></p>
+						</div>
+					</div>
+					<div>
+						<div class="col-md-2">
+							<br>
+							<br>
+							<div class="col-md-2">
+								<img class="bluecrystal" src="assets/images/blue.png">
+							</div>
+							<div class="col-md-2">
+								<img class="redcrystal" src="assets/images/red.png">
+							</div>
+							<div class="col-md-2">
+								<img class="yellowcrystal" src="assets/images/yellow.png">
+							</div>
+							<div class="col-md-2">
+								<img class="greencrystal" src="assets/images/green.png">
+							</div>
+						</div>
+					</div>
+					<div class="col-md-12">
+							<h2> <span class="guessdisplay">0</span></h2>
+						</div>
+					
+				</div>
+			</div>
+			<script>
+				
+				// Generates the number to guess.
+				var number = Math.floor((Math.random() * 120) + 19);
+				// Random value for each crystal.
+				var blue = Math.floor((Math.random() * 12) + 1);
+				var red = Math.floor((Math.random() * 12) + 1);
+				var yellow = Math.floor((Math.random() * 12) + 1);
+				var green = Math.floor((Math.random() * 12) + 1);
+				// Set initial values to 0.
+				var guessTotal = 0;
+				var wins = 0;
+				var losses = 0;
+				// Displays the number you need to guess on the page.
+				$(".numberdisplay").html(number);
+				// On click events for each crystal.
+				$(".bluecrystal").click(function() {
+					update(blue);
+				});
+				$(".redcrystal").click(function() {
+					update(red);
+				});
+				$(".yellowcrystal").click(function() {
+					update(yellow);
+				});
+				$(".greencrystal").click(function() {
+					update(green);
+				});
+				$(".dropdown").click(function() {
+					$(".instructions").toggle("slow");
+				})
+				// The reset function when game is over.
+				function reset() {
+					// Generates a new number to guess.
+					number = Math.floor((Math.random() * 120) + 19);
+					// Displays that number on the page.
+					$(".numberdisplay").html(number);
+					// Generates new values for the crystals.
+					blue = Math.floor((Math.random() * 12) + 1);
+					red = Math.floor((Math.random() * 12) + 1);
+					yellow = Math.floor((Math.random() * 12) + 1);
+					green = Math.floor((Math.random() * 12) + 1);
+					// Resets the total guess to 0.
+					guessTotal = 0;
+					// Displays the guess total.
+					$(".guessdisplay").html(guessTotal);
+				};
+				// This function updates the user's total guess.
+				function update(guess) {
+					guessTotal += guess;
+					// replace with the new total.
+					$(".guessdisplay").empty();
+					$(".guessdisplay").append(guessTotal);
+					// Checks to see if you win or lose.
+					if (guessTotal > number) {
+						// Adds a loss.
+						losses++;
+						// Displays updated losses.
+						$("#lossesdisplay").html(losses);
+						// Calls the reset function to reset the game.
+						reset();
+					} else if (guessTotal == number) {
+						// Adds a win.
+						wins++;
+						// Displays the updated wins.
+						$("#winsdisplay").html(wins);
+						//reset the game.
+						reset();
+						
+					};
+				};
+			</script>
+		</body>
+	</html>

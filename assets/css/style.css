@@ -1,0 +1,47 @@
+
+.container {
+ 	width: 100%;
+ 	background-color: #b4ddd9;
+
+}
+h1 {
+	font-size: 30px;
+	font-family: georgia;
+	background-color: #bf7439;
+	color: white;
+	float: left;
+	margin-right: 10px;
+	padding: 10px;
+
+}
+
+.instructions
+{
+	clear: both;
+	background-color: #f9e8cd;
+	margin-top: 40px;
+	width: 55%;
+	color: green;
+}
+
+
+p {
+	clear: both;
+	font-family: georgia;
+	font-size: 15px;
+	text-align: left;
+}
+
+h2 {
+	font-family: georgia
+	font-size: 30px;
+}
+
+.results {
+	background-color: #78c586;
+	width: 20%
+
+}
+
+
+
